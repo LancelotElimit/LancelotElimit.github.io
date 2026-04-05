@@ -25,7 +25,7 @@ function App() {
             <header className="hero">
                 <div className="hero-overlay" />
                 <div className="hero-text">
-                    Hey, I'm <span>JUNJIE</span>
+                    Hey, I'm <span>Lancelot</span>
                 </div>
             </header>
 
