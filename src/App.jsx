@@ -100,6 +100,9 @@ const translations = {
         photos: 'My Photos',
         contact: 'Contact',
         phone: 'Phone',
+        australiaPhone: 'Australia',
+        chinaPhone: 'China',
+        githubProfile: 'GitHub',
         closePreview: 'Close image preview',
         imagePreview: 'Image preview',
         enlargedPreview: 'Enlarged preview',
@@ -120,6 +123,7 @@ const translations = {
         switchToLight: 'Switch to light mode',
         switchLanguage: '切换到中文',
         navigation: 'Main navigation',
+        backToTop: 'Back to top',
     },
     zh: {
         greeting: '你好，我是',
@@ -141,6 +145,9 @@ const translations = {
         photos: '我的照片',
         contact: '邮箱',
         phone: '电话',
+        australiaPhone: '澳大利亚',
+        chinaPhone: '中国',
+        githubProfile: 'GitHub',
         closePreview: '关闭图片预览',
         imagePreview: '图片预览',
         enlargedPreview: '放大的图片',
@@ -161,6 +168,7 @@ const translations = {
         switchToLight: '切换到日间模式',
         switchLanguage: 'Switch to English',
         navigation: '主导航',
+        backToTop: '回到顶部',
     },
 }
 
@@ -200,13 +208,36 @@ function TypewriterText({ text, delay = 0 }) {
 
 function WelcomeScreen({ onFinish }) {
     useEffect(() => {
+        const previousScrollRestoration = window.history.scrollRestoration
+        window.history.scrollRestoration = 'manual'
+        document.body.classList.add('welcome-active')
+        window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
+
         const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-        const timeoutId = window.setTimeout(onFinish, reduceMotion ? 700 : 3200)
-        return () => window.clearTimeout(timeoutId)
+        const timeoutId = window.setTimeout(() => {
+            window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
+            onFinish()
+        }, reduceMotion ? 1200 : 5900)
+
+        return () => {
+            window.clearTimeout(timeoutId)
+            document.body.classList.remove('welcome-active')
+            window.history.scrollRestoration = previousScrollRestoration
+            requestAnimationFrame(() => window.scrollTo({ top: 0, left: 0, behavior: 'auto' }))
+        }
     }, [onFinish])
 
     return (
         <div className="welcome-screen" role="status" aria-label="Welcome Lancelot">
+            <div className="welcome-auth" aria-hidden="true">
+                <div className="auth-line auth-account">ACCOUNT: Lancelot</div>
+                <div className="auth-line auth-password">
+                    <span>PASSWORD: </span><span className="password-stars">******</span>
+                </div>
+                <div className="auth-line auth-access">
+                    ACCESS: APPROVAL <strong>√</strong>
+                </div>
+            </div>
             <div className="welcome-content">
                 <div className="welcome-message">
                     WELCOME <strong>LANCELOT</strong>
@@ -411,10 +442,20 @@ function Home({ language }) {
             </section>
 
             <footer className="footer" id="contact">
-                <p>
-                    {t.contact}: <a href="mailto:s225204972@deakin.edu.au">s225204972@deakin.edu.au</a>
-                    {' | '}{t.phone}: <a href="tel:+61402201872">+61 402 201 872</a>
-                </p>
+                <div className="contact-links">
+                    <span>
+                        {t.contact}: <a href="mailto:s225204972@deakin.edu.au">s225204972@deakin.edu.au</a>
+                    </span>
+                    <span>
+                        {t.phone} ({t.australiaPhone}): <a href="tel:+61402201872">+61 402 201 872</a>
+                    </span>
+                    <span>
+                        {t.phone} ({t.chinaPhone}): <a href="tel:+8619562179360">+86 195 6217 9360</a>
+                    </span>
+                    <span>
+                        {t.githubProfile}: <a href="https://github.com/LancelotElimit" target="_blank" rel="noreferrer">LancelotElimit ↗</a>
+                    </span>
+                </div>
             </footer>
 
             {selectedImage && (
@@ -508,6 +549,16 @@ function App() {
                     <Route path="*" element={<Home language={language} />} />
                 </Routes>
             </main>
+
+            <button
+                className="back-to-top"
+                type="button"
+                onClick={() => window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })}
+                aria-label={t.backToTop}
+                title={t.backToTop}
+            >
+                <span aria-hidden="true">↑</span>
+            </button>
         </>
     )
 }

@@ -57,6 +57,10 @@ body {
   transition: background-color 0.25s ease, color 0.25s ease;
 }
 
+body.welcome-active {
+  overflow: hidden;
+}
+
 a {
   color: inherit;
 }
@@ -70,7 +74,55 @@ a {
   padding: 24px;
   background: var(--page-bg);
   color: var(--text);
-  animation: welcome-fade-out 0.4s ease 2.75s forwards;
+  animation: welcome-fade-out 0.4s ease 5.4s forwards;
+}
+
+.welcome-auth {
+  position: absolute;
+  left: calc(50% - 32px);
+  top: 50%;
+  display: grid;
+  gap: 12px;
+  width: min(360px, calc(100% - 48px));
+  transform: translate(-50%, -50%);
+  color: var(--text);
+  font-family: "Microsoft YaHei", "Segoe UI", sans-serif;
+  font-size: clamp(0.82rem, 2.4vw, 1.05rem);
+  font-weight: 600;
+  animation: auth-sequence-out 0.35s ease 2.35s forwards;
+}
+
+.auth-line {
+  opacity: 0;
+}
+
+.auth-account {
+  animation: auth-line-in 0.45s ease 0.2s forwards;
+}
+
+.auth-password {
+  display: flex;
+  animation: auth-line-in 0.45s ease 0.75s forwards;
+}
+
+.password-stars {
+  display: inline-block;
+  overflow: hidden;
+  width: 0;
+  white-space: nowrap;
+  animation: password-type 0.75s steps(6, end) 1.05s forwards;
+}
+
+.auth-access {
+  color: #22c55e;
+  font-size: 0.86em;
+  animation: auth-line-in 0.45s ease 1.75s forwards;
+}
+
+.auth-access strong {
+  margin-left: 8px;
+  color: #22c55e;
+  font-size: 1.2em;
 }
 
 .welcome-content {
@@ -78,6 +130,8 @@ a {
   justify-items: center;
   width: fit-content;
   max-width: 100%;
+  opacity: 0;
+  animation: welcome-content-in 0.25s ease 2.75s forwards;
 }
 
 .welcome-message {
@@ -91,7 +145,7 @@ a {
   letter-spacing: 0.08em;
   line-height: 1.1;
   white-space: nowrap;
-  animation: welcome-type 2.15s steps(16, end) 0.25s both;
+  animation: welcome-type 2.15s steps(16, end) 2.9s both;
 }
 
 .welcome-message strong {
@@ -117,7 +171,42 @@ a {
   background: var(--welcome-progress);
   box-shadow: 0 0 8px color-mix(in srgb, var(--welcome-progress) 55%, transparent);
   transform-origin: center;
-  animation: welcome-progress-shrink 2.65s linear 0.25s forwards;
+  animation: welcome-progress-shrink 2.4s linear 2.9s forwards;
+}
+
+@keyframes auth-line-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes password-type {
+  from {
+    width: 0;
+  }
+
+  to {
+    width: 6ch;
+  }
+}
+
+@keyframes auth-sequence-out {
+  to {
+    opacity: 0;
+    transform: translate(-50%, calc(-50% - 8px));
+  }
+}
+
+@keyframes welcome-content-in {
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes welcome-type {
@@ -218,6 +307,38 @@ a {
 .site-content {
   min-width: 0;
   margin-left: 210px;
+}
+
+.back-to-top {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border: 2px solid var(--text);
+  border-radius: 50%;
+  background: var(--page-bg);
+  color: var(--text);
+  box-shadow: 4px 4px 0 var(--accent);
+  font-size: 1.6rem;
+  font-weight: 900;
+  line-height: 1;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.25s ease, color 0.25s ease;
+}
+
+.back-to-top:hover,
+.back-to-top:focus-visible {
+  transform: translateY(-3px);
+  background: var(--nav-hover);
+}
+
+.back-to-top:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 var(--accent);
 }
 
 .hero {
@@ -457,6 +578,7 @@ a {
 }
 
 .profile-lockup {
+  --profile-size: 160px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -466,19 +588,26 @@ a {
 }
 
 .profile-word {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 calc(var(--profile-size) * 1.5);
+  width: calc(var(--profile-size) * 1.5);
+  height: var(--profile-size);
   color: var(--profile-word);
   font-family: "Courier New", monospace;
-  font-size: clamp(3rem, 8vw, 8.5rem);
+  font-size: var(--profile-size);
   font-weight: 900;
   letter-spacing: -0.12em;
-  line-height: 1;
+  line-height: 0.75;
+  transform: scaleX(0.65);
   user-select: none;
 }
 
 .profile-flip-button {
-  flex: 0 0 160px;
-  width: 160px;
-  height: 160px;
+  flex: 0 0 var(--profile-size);
+  width: var(--profile-size);
+  height: var(--profile-size);
   padding: 0;
   border: 0;
   border-radius: 50%;
@@ -794,6 +923,17 @@ a {
   color: aquamarine;
 }
 
+.contact-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px 22px;
+}
+
+.contact-links span {
+  white-space: nowrap;
+}
+
 .modal-backdrop {
   position: fixed;
   inset: 0;
@@ -1104,6 +1244,23 @@ html[data-theme='dark'] .editor-actions .primary-button {
     margin-left: 104px;
   }
 
+  .back-to-top {
+    right: 14px;
+    bottom: 14px;
+    width: 46px;
+    height: 46px;
+  }
+
+  .contact-links {
+    flex-direction: column;
+    align-items: center;
+    gap: 7px;
+  }
+
+  .contact-links span {
+    white-space: normal;
+  }
+
   .theme-toggle,
   .language-toggle {
     flex-direction: column;
@@ -1157,17 +1314,8 @@ html[data-theme='dark'] .editor-actions .primary-button {
   }
 
   .profile-lockup {
+    --profile-size: 120px;
     gap: 7px;
-  }
-
-  .profile-word {
-    font-size: clamp(2rem, 7vw, 3.5rem);
-  }
-
-  .profile-flip-button {
-    flex-basis: 120px;
-    width: 120px;
-    height: 120px;
   }
 
   .tech-groups {
@@ -1231,13 +1379,11 @@ html[data-theme='dark'] .editor-actions .primary-button {
   }
 
   .profile-word {
-    font-size: 1.55rem;
+    letter-spacing: -0.16em;
   }
 
-  .profile-flip-button {
-    flex-basis: 92px;
-    width: 92px;
-    height: 92px;
+  .profile-lockup {
+    --profile-size: 92px;
   }
 }
 
@@ -1247,6 +1393,14 @@ html[data-theme='dark'] .editor-actions .primary-button {
   .welcome-message::after,
   .welcome-progress {
     animation: none;
+  }
+
+  .welcome-auth {
+    display: none;
+  }
+
+  .welcome-content {
+    opacity: 1;
   }
 
   .typing-text,
