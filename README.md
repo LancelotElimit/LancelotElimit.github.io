@@ -1,16 +1,58 @@
-# React + Vite
+# Lancelot's Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A single-page personal portfolio built with React and Vite. It includes an introduction, project highlights, a photo gallery, and contact details.
 
-Currently, two official plugins are available:
+## Run locally
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Install the dependencies and start the development server:
 
-## React Compiler
+```bash
+npm install
+npm run dev
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Vite will print the local preview address, usually `http://localhost:5173`.
 
-## Expanding the ESLint configuration
+## Edit the site
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- Page content and gallery entries: `src/App.jsx`
+- Layout, colours, and responsive styles: `src/App.css`
+- Images: `public/images`
+- Browser title and description: `index.html`
+
+## Blog
+
+The Blog page uses React Router and is available at `#/blog`. Posts are Markdown files in `src/posts`, so every visitor sees the same published content without a database.
+
+Create a post by adding a file such as `src/posts/my-post.md`:
+
+```markdown
+---
+title: My Post Title
+date: 2026-08-17
+summary: A short description shown on the Blog page.
+---
+
+Write the article here using Markdown.
+```
+
+- Create: add a new `.md` file.
+- Read: open the Blog page or an individual article route.
+- Update: edit the corresponding `.md` file.
+- Delete: remove the corresponding `.md` file.
+
+Commit and push the change to `main` to publish it on every device.
+
+Files placed in `public` are available from the site root. For example, `public/images/photo.jpg` is referenced as `/images/photo.jpg`.
+
+## Check a change
+
+```bash
+npm run lint
+npm run build
+npm run preview
+```
+
+## Publish
+
+Pushing to the `main` branch triggers the GitHub Actions workflow in `.github/workflows/deploy.yml`. The workflow builds the site and publishes the generated `dist` directory to GitHub Pages.
