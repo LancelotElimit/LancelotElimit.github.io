@@ -20,26 +20,46 @@ const techStack = {
 }
 
 const careerDetails = {
-    en: {
-        role: 'Junior Developer',
-        company: 'Hardhat Enterprises',
-        period: 'Jul 2025 - Present',
-        bullets: [
-            'Migrated approximately 80% of a legacy Android Java/XML application to Kotlin Multiplatform, enabling parallel Android and iOS development while reducing duplicated code.',
-            'Designed and documented a front-end migration guide covering shared modules, platform-specific structure, and the native UI strategy for Jetpack Compose and SwiftUI.',
-            'Established reproducible iOS build and run pipelines and helped deliver the first functional iOS prototype ahead of schedule.',
-        ],
-    },
-    zh: {
-        role: '初级开发工程师',
-        company: 'Hardhat Enterprises',
-        period: '2025 年 7 月 - 至今',
-        bullets: [
-            '将约 80% 的旧版 Android Java/XML 应用迁移到 Kotlin Multiplatform，使 Android 与 iOS 能够并行开发，并减少重复代码。',
-            '设计并编写前端迁移指南，统一共享模块、平台结构，以及 Jetpack Compose 与 SwiftUI 的原生 UI 策略。',
-            '建立可复现的 iOS 构建与运行流程，并协助团队提前完成首个可运行的 iOS 原型。',
-        ],
-    },
+    en: [
+        {
+            role: 'IT Support & Junior Developer Intern',
+            company: 'Current Internship',
+            period: 'Aug 2026 - Present',
+            bullets: [
+                'Supporting day-to-day IT operations while contributing to junior software development tasks and internal technical solutions.',
+            ],
+        },
+        {
+            role: 'Junior Developer',
+            company: 'Hardhat Enterprises',
+            period: 'Jul 2025 - Jun 2026',
+            bullets: [
+                'Migrated approximately 80% of a legacy Android Java/XML application to Kotlin Multiplatform, enabling parallel Android and iOS development while reducing duplicated code.',
+                'Designed and documented a front-end migration guide covering shared modules, platform-specific structure, and the native UI strategy for Jetpack Compose and SwiftUI.',
+                'Established reproducible iOS build and run pipelines and helped deliver the first functional iOS prototype ahead of schedule.',
+            ],
+        },
+    ],
+    zh: [
+        {
+            role: 'IT 支持与初级开发实习生',
+            company: '当前实习',
+            period: '2026 年 8 月 - 至今',
+            bullets: [
+                '参与日常 IT 运维支持，同时承担初级软件开发任务并协助建设内部技术解决方案。',
+            ],
+        },
+        {
+            role: '初级开发工程师',
+            company: 'Hardhat Enterprises',
+            period: '2025 年 7 月 - 2026 年 6 月',
+            bullets: [
+                '将约 80% 的旧版 Android Java/XML 应用迁移到 Kotlin Multiplatform，使 Android 与 iOS 能够并行开发，并减少重复代码。',
+                '设计并编写前端迁移指南，统一共享模块、平台结构，以及 Jetpack Compose 与 SwiftUI 的原生 UI 策略。',
+                '建立可复现的 iOS 构建与运行流程，并协助团队提前完成首个可运行的 iOS 原型。',
+            ],
+        },
+    ],
 }
 
 const educationDetails = {
@@ -83,7 +103,7 @@ const translations = {
     en: {
         greeting: "Hey, I'm",
         introduction: 'Software developer and IT student building systems across platforms',
-        aboutDescription: 'I am a Junior Developer and Information Technology student at Deakin University, where I received a STEM Scholarship and maintain a Distinction average.',
+        aboutDescription: 'I am an IT Support and Junior Developer intern and an Information Technology student at Deakin University, where I received a STEM Scholarship and maintain a Distinction average.',
         currentFocus: 'My experience spans Kotlin Multiplatform mobile development, React and Node.js applications, AWS-connected systems, and game projects. I am also building a 2D engine with C++ and OpenGL while exploring computer graphics and real-time rendering.',
         techStack: 'Tech Stack',
         languagesLabel: 'Languages',
@@ -117,10 +137,10 @@ const translations = {
         work: 'Work',
         gallery: 'Gallery',
         blog: 'Blog',
-        darkMode: 'Dark mode',
-        lightMode: 'Light mode',
-        switchToDark: 'Switch to dark mode',
-        switchToLight: 'Switch to light mode',
+        darkMode: 'Demon King',
+        lightMode: 'Priest',
+        switchToDark: 'Switch to Demon King theme',
+        switchToLight: 'Switch to Priest theme',
         switchLanguage: '切换到中文',
         navigation: 'Main navigation',
         backToTop: 'Back to top',
@@ -128,7 +148,7 @@ const translations = {
     zh: {
         greeting: '你好，我是',
         introduction: '一名构建跨平台系统的软件开发者与 IT 学生',
-        aboutDescription: '我目前担任初级开发工程师，并就读于迪肯大学信息技术专业，获得了 STEM 奖学金并保持 Distinction 平均成绩。',
+        aboutDescription: '我目前担任 IT 支持与初级开发实习生，并就读于迪肯大学信息技术专业，获得了 STEM 奖学金并保持 Distinction 平均成绩。',
         currentFocus: '我的实践涵盖 Kotlin Multiplatform 移动开发、React 与 Node.js 应用、AWS 互联系统和游戏项目；同时也在使用 C++ 与 OpenGL 开发 2D 引擎，并持续探索计算机图形学和实时渲染。',
         techStack: '技术栈',
         languagesLabel: '编程语言',
@@ -162,10 +182,10 @@ const translations = {
         work: '作品',
         gallery: '相册',
         blog: '博客',
-        darkMode: '夜间模式',
-        lightMode: '日间模式',
-        switchToDark: '切换到夜间模式',
-        switchToLight: '切换到日间模式',
+        darkMode: '魔王',
+        lightMode: '祭司',
+        switchToDark: '切换到魔王主题',
+        switchToLight: '切换到祭司主题',
         switchLanguage: 'Switch to English',
         navigation: '主导航',
         backToTop: '回到顶部',
@@ -352,20 +372,24 @@ function Home({ language }) {
             <section id="experience" className="resume-overview">
                 <div className="resume-column">
                     <h2>{t.experienceTitle}</h2>
-                    <article className="timeline-card">
-                        <div className="timeline-card-header">
-                            <div>
-                                <h3>{careerDetails[language].role}</h3>
-                                <p>{careerDetails[language].company}</p>
-                            </div>
-                            <span>{careerDetails[language].period}</span>
-                        </div>
-                        <ul>
-                            {careerDetails[language].bullets.map((bullet) => (
-                                <li key={bullet}>{bullet}</li>
-                            ))}
-                        </ul>
-                    </article>
+                    <div className="career-list">
+                        {careerDetails[language].map((career) => (
+                            <article className="timeline-card" key={`${career.role}-${career.period}`}>
+                                <div className="timeline-card-header">
+                                    <div>
+                                        <h3>{career.role}</h3>
+                                        <p>{career.company}</p>
+                                    </div>
+                                    <span>{career.period}</span>
+                                </div>
+                                <ul>
+                                    {career.bullets.map((bullet) => (
+                                        <li key={bullet}>{bullet}</li>
+                                    ))}
+                                </ul>
+                            </article>
+                        ))}
+                    </div>
                 </div>
 
                 <div className="resume-column">
