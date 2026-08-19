@@ -49,6 +49,7 @@ function AboutSection({ language, t, techStack }) {
                     <TechGroup title={t.frameworksLabel} items={techStack.frameworks} />
                     <TechGroup title={t.toolsLabel} items={techStack.tools} />
                     <TechGroup title={t.interestsLabel} items={techStack.interests} />
+                    <TechGroup title={t.communicationLabel} items={techStack.communication[language]} />
                 </div>
             </div>
             <hr className="section-divider" />

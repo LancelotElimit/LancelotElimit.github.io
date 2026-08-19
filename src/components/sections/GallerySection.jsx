@@ -1,7 +1,17 @@
 import { useEffect, useState } from 'react'
 
+const wrapIndex = (index, length) => (index + length) % length
+
 function GallerySection({ t, images }) {
     const [selectedImage, setSelectedImage] = useState(null)
+    const [currentIndex, setCurrentIndex] = useState(() => {
+        const defaultIndex = images.findIndex((image) => image.src === '/images/gallery_3.jpg')
+        return defaultIndex === -1 ? 0 : defaultIndex
+    })
+    const currentImage = images[currentIndex]
+
+    const showPrevious = () => setCurrentIndex((index) => wrapIndex(index - 1, images.length))
+    const showNext = () => setCurrentIndex((index) => wrapIndex(index + 1, images.length))
 
     useEffect(() => {
         if (!selectedImage) return undefined
@@ -14,10 +24,14 @@ function GallerySection({ t, images }) {
         return () => window.removeEventListener('keydown', closeOnEscape)
     }, [selectedImage])
 
-    const openImageFromKeyboard = (event, imageSrc) => {
-        if (event.key === 'Enter' || event.key === ' ') {
+    const handleCarouselKeyDown = (event) => {
+        if (event.key === 'ArrowLeft') {
             event.preventDefault()
-            setSelectedImage(imageSrc)
+            showPrevious()
+        }
+        if (event.key === 'ArrowRight') {
+            event.preventDefault()
+            showNext()
         }
     }
 
@@ -26,19 +40,38 @@ function GallerySection({ t, images }) {
             <section id="gallery" className="photos">
                 <hr className="section-divider" />
                 <h2>{t.photos}</h2>
-                <div className="gallery-container">
-                    {images.map((image) => (
+
+                <div
+                    className="gallery-carousel"
+                    aria-roledescription="carousel"
+                    aria-label={t.galleryCarousel}
+                    onKeyDown={handleCarouselKeyDown}
+                >
+                    <button
+                        className="carousel-slide"
+                        type="button"
+                        onClick={() => setSelectedImage(currentImage.src)}
+                        aria-label={t.openImagePreview}
+                    >
                         <img
-                            key={image.src}
-                            className="pic1 gallery-img"
-                            src={image.src}
-                            alt={image.alt}
-                            onClick={() => setSelectedImage(image.src)}
-                            onKeyDown={(event) => openImageFromKeyboard(event, image.src)}
-                            role="button"
-                            tabIndex="0"
+                            key={currentImage.src}
+                            className="carousel-image"
+                            src={currentImage.src}
+                            alt={currentImage.alt}
                         />
-                    ))}
+                    </button>
+
+                    <button type="button" className="carousel-arrow carousel-arrow-left" onClick={showPrevious} aria-label={t.previousPhoto}>
+                        <span aria-hidden="true">←</span>
+                    </button>
+
+                    <button type="button" className="carousel-arrow carousel-arrow-right" onClick={showNext} aria-label={t.nextPhoto}>
+                        <span aria-hidden="true">→</span>
+                    </button>
+
+                    <span className="carousel-counter" aria-live="polite">
+                        {String(currentIndex + 1).padStart(2, '0')} / {String(images.length).padStart(2, '0')}
+                    </span>
                 </div>
             </section>
 

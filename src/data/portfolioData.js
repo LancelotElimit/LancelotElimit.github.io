@@ -5,13 +5,21 @@ export const galleryImages = [
     { src: '/images/gallery_4.jpg', alt: 'Lancelot photo gallery image 4' },
     { src: '/images/gallery_5.jpg', alt: 'Lancelot photo gallery image 5' },
     { src: '/images/gallery_6.jpeg', alt: 'Lancelot photo gallery image 6' },
+    ...Array.from({ length: 7 }, (_, index) => ({
+        src: `/images/gallery_new_${index + 16}.jpg`,
+        alt: `Lancelot photo gallery image ${index + 7}`,
+    })),
 ]
 
 export const techStack = {
-    languages: ['C', 'C++', 'C#', 'Java', 'Python', 'TypeScript'],
+    languages: ['C', 'C++', 'C#', 'Java', 'JavaScript', 'Python', 'TypeScript'],
     frameworks: ['OpenGL', 'SDL3', 'Kotlin Multiplatform', 'Jetpack Compose', 'SwiftUI', 'React', 'Vue 3', 'Vue Router', 'Pinia', 'Vuetify', 'Node.js', 'RESTful API', 'Unity', 'Unreal Engine'],
-    tools: ['Git', 'GitHub', 'CMake', 'Visual Studio', 'Vite', 'Linux', 'AWS'],
+    tools: ['Git', 'GitHub', 'CMake', 'Visual Studio', 'VS Code', 'IntelliJ IDEA', 'CLion', 'Rider', 'WebStorm', 'Vite', 'Linux', 'AWS'],
     interests: ['MongoDB', 'MySQL', 'Firebase', 'Firestore', 'MQTT', 'Node-RED'],
+    communication: {
+        en: ['Chinese', 'Japanese', 'English'],
+        zh: ['中文', '日语', '英语'],
+    },
 }
 
 export const careerDetails = {
