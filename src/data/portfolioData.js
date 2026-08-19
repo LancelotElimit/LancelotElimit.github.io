@@ -17,13 +17,15 @@ export const techStack = {
 export const careerDetails = {
     en: [
         {
-            role: 'IT Support & Junior Developer Intern', company: 'AIFE', period: '1 Aug 2026 - 30 Sep 2026',
+            role: 'Frontend Developer Intern', company: 'AIFE', period: '1 Aug 2026 - 30 Sep 2026',
             bullets: [
-                'Contributing to Platform Portal, an internal enterprise management platform built with Vue 3, TypeScript, Vue Router, Pinia, Vuetify, Vite, and RESTful APIs.',
-                'Mapped data flow across pages, reusable business components, state management, and backend APIs while working with the Vue 3 Composition API and modular TypeScript patterns.',
-                'Set up and troubleshot the local development environment, resolving Node.js version, dependency, Stylelint, and development-tool configuration issues.',
-                'Improved Org Chart rendering logic and added reusable Preview entry points to both the Structure editor and list, with source-aware return navigation through route query parameters.',
-                'Reviewed read-only and edit-mode behaviour, route permissions, component responsibilities, existing copy actions, and potential deployment-path issues to minimise regressions.',
+                'Developed and maintained the Structure and Org Chart modules of an internal enterprise platform, tracing data flow across pages, business components, Pinia state, and backend APIs.',
+                'Optimised Org Chart node rendering by hiding redundant Structure root nodes based on parent-child relationships without altering source data or editing behaviour.',
+                'Added read-only Org Chart Preview entry points to Structure Detail and Structure List using dynamic route parameters, with query-based source tracking and reliable return navigation.',
+                'Improved the Preview toolbar layout for different viewport widths and browser zoom levels through read-only-mode conditional styling.',
+                'Extended the Status & Actions menu with Duplicate Structure, reusing the existing clone API and separating it from status and destructive actions.',
+                'Implemented confirmation dialogs, loading states, success and failure feedback, exception handling, and cache refresh or invalidation strategies for asynchronous operations.',
+                'Reviewed permissions, read-only behaviour, unsaved form state, routing, and regression risks, while troubleshooting Node.js, dependency, TypeScript, and code-quality tooling issues.',
             ],
         },
         {
@@ -37,13 +39,15 @@ export const careerDetails = {
     ],
     zh: [
         {
-            role: 'IT 支持与初级开发实习生', company: 'AIFE', period: '2026 年 8 月 1 日 - 9 月 30 日',
+            role: '前端开发实习生', company: 'AIFE', period: '2026 年 8 月 1 日 - 9 月 30 日',
             bullets: [
-                '参与企业内部管理平台 Platform Portal 的前端开发与维护，使用 Vue 3、TypeScript、Vue Router、Pinia、Vuetify、Vite 与 RESTful API。',
-                '梳理页面、业务组件、状态管理与后端 API 之间的数据流，实践 Vue 3 Composition API 与 TypeScript 模块化开发。',
-                '完成本地开发环境搭建，定位并解决 Node.js 版本、依赖安装、Stylelint 与开发工具配置问题。',
-                '优化 Org Chart 树形数据展示逻辑，并在 Structure 编辑页和列表页增加可复用的 Preview 入口，通过路由 Query 记录来源并正确返回。',
-                '检查只读与编辑模式、路由权限、组件职责、原有复制操作和潜在部署路径问题，参与代码 Review 并降低功能回归风险。',
+                '参与企业内部管理平台 Structure 与 Org Chart 模块的开发和维护，梳理页面、业务组件、Pinia 状态及后端 API 之间的数据流。',
+                '根据父子节点关系优化组织架构树展示逻辑，隐藏冗余 Structure 根节点，同时保持原始业务数据和编辑功能不受影响。',
+                '为 Structure Detail 和 Structure List 增加只读 Org Chart Preview 入口，使用动态路由参数指定 Structure，并通过 Query 记录来源和准确返回。',
+                '通过只读模式条件样式优化 Preview 工具栏，改善不同屏幕宽度和浏览器缩放比例下的显示效果。',
+                '在 Status & Actions 菜单中增加 Duplicate Structure，复用已有克隆 API，并与状态操作及危险操作合理分隔。',
+                '完善异步操作的确认弹窗、Loading、成功与失败反馈、异常处理，以及列表强制刷新和详情缓存失效策略。',
+                '参与代码 Review，检查权限控制、只读模式、未保存表单、路由和回归风险，并排查 Node.js、依赖、TypeScript 与代码检查工具问题。',
             ],
         },
         {
