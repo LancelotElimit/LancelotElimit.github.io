@@ -8,17 +8,23 @@ export const galleryImages = [
 ]
 
 export const techStack = {
-    languages: ['C', 'C++', 'C#', 'Java', 'Python'],
-    frameworks: ['OpenGL', 'SDL3', 'Kotlin Multiplatform', 'Jetpack Compose', 'SwiftUI', 'React', 'Vue 3', 'Node.js', 'Unity', 'Unreal Engine'],
-    tools: ['Git', 'GitHub', 'CMake', 'Visual Studio', 'Linux', 'AWS'],
+    languages: ['C', 'C++', 'C#', 'Java', 'Python', 'TypeScript'],
+    frameworks: ['OpenGL', 'SDL3', 'Kotlin Multiplatform', 'Jetpack Compose', 'SwiftUI', 'React', 'Vue 3', 'Vue Router', 'Pinia', 'Vuetify', 'Node.js', 'RESTful API', 'Unity', 'Unreal Engine'],
+    tools: ['Git', 'GitHub', 'CMake', 'Visual Studio', 'Vite', 'Linux', 'AWS'],
     interests: ['MongoDB', 'MySQL', 'Firebase', 'Firestore', 'MQTT', 'Node-RED'],
 }
 
 export const careerDetails = {
     en: [
         {
-            role: 'IT Support & Junior Developer Intern', company: 'Current Internship', period: 'Aug 2026 - Present',
-            bullets: ['Supporting day-to-day IT operations while contributing to junior software development tasks and internal technical solutions.'],
+            role: 'IT Support & Junior Developer Intern', company: 'AIFE', period: '1 Aug 2026 - 30 Sep 2026',
+            bullets: [
+                'Contributing to Platform Portal, an internal enterprise management platform built with Vue 3, TypeScript, Vue Router, Pinia, Vuetify, Vite, and RESTful APIs.',
+                'Mapped data flow across pages, reusable business components, state management, and backend APIs while working with the Vue 3 Composition API and modular TypeScript patterns.',
+                'Set up and troubleshot the local development environment, resolving Node.js version, dependency, Stylelint, and development-tool configuration issues.',
+                'Improved Org Chart rendering logic and added reusable Preview entry points to both the Structure editor and list, with source-aware return navigation through route query parameters.',
+                'Reviewed read-only and edit-mode behaviour, route permissions, component responsibilities, existing copy actions, and potential deployment-path issues to minimise regressions.',
+            ],
         },
         {
             role: 'Junior Developer', company: 'Hardhat Enterprises', period: 'Jul 2025 - Jun 2026',
@@ -31,8 +37,14 @@ export const careerDetails = {
     ],
     zh: [
         {
-            role: 'IT 支持与初级开发实习生', company: '当前实习', period: '2026 年 8 月 - 至今',
-            bullets: ['参与日常 IT 运维支持，同时承担初级软件开发任务并协助建设内部技术解决方案。'],
+            role: 'IT 支持与初级开发实习生', company: 'AIFE', period: '2026 年 8 月 1 日 - 9 月 30 日',
+            bullets: [
+                '参与企业内部管理平台 Platform Portal 的前端开发与维护，使用 Vue 3、TypeScript、Vue Router、Pinia、Vuetify、Vite 与 RESTful API。',
+                '梳理页面、业务组件、状态管理与后端 API 之间的数据流，实践 Vue 3 Composition API 与 TypeScript 模块化开发。',
+                '完成本地开发环境搭建，定位并解决 Node.js 版本、依赖安装、Stylelint 与开发工具配置问题。',
+                '优化 Org Chart 树形数据展示逻辑，并在 Structure 编辑页和列表页增加可复用的 Preview 入口，通过路由 Query 记录来源并正确返回。',
+                '检查只读与编辑模式、路由权限、组件职责、原有复制操作和潜在部署路径问题，参与代码 Review 并降低功能回归风险。',
+            ],
         },
         {
             role: '初级开发工程师', company: 'Hardhat Enterprises', period: '2025 年 7 月 - 2026 年 6 月',
