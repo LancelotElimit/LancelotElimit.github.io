@@ -5,16 +5,25 @@ function ResumeSection({ t, careers, education }) {
                 <h2>{t.experienceTitle}</h2>
                 <div className="career-list">
                     {careers.map((career) => (
-                        <article className="timeline-card" key={`${career.role}-${career.period}`}>
-                            <div className="timeline-card-header">
-                                <div>
-                                    <h3>{career.role}</h3>
-                                    <p>{career.company}</p>
+                        <details className="timeline-card" key={`${career.role}-${career.period}`}>
+                            <summary className="timeline-summary">
+                                <div className="timeline-card-header">
+                                    <div>
+                                        <h3>{career.role}</h3>
+                                        <p>{career.company}</p>
+                                    </div>
+                                    <span>{career.period}</span>
                                 </div>
-                                <span>{career.period}</span>
+                                <span className="timeline-toggle" aria-hidden="true">
+                                    <span className="timeline-expand-label">{t.expandExperience}</span>
+                                    <span className="timeline-collapse-label">{t.collapseExperience}</span>
+                                    <span className="timeline-chevron">⌄</span>
+                                </span>
+                            </summary>
+                            <div className="timeline-details">
+                                <ul>{career.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}</ul>
                             </div>
-                            <ul>{career.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}</ul>
-                        </article>
+                        </details>
                     ))}
                 </div>
             </div>

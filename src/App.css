@@ -688,12 +688,73 @@ a {
 }
 
 .timeline-card {
-  padding: 24px;
+  overflow: hidden;
 }
 
 .career-list {
   display: grid;
   gap: 14px;
+}
+
+.timeline-summary {
+  padding: 24px;
+  cursor: pointer;
+  list-style: none;
+  transition: background-color 180ms ease;
+}
+
+.timeline-summary::-webkit-details-marker {
+  display: none;
+}
+
+.timeline-summary:hover {
+  background: var(--nav-hover);
+}
+
+.timeline-summary:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+}
+
+.timeline-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 16px;
+  color: var(--muted-text);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.timeline-collapse-label {
+  display: none;
+}
+
+.timeline-chevron {
+  display: inline-block;
+  font-size: 1.15rem;
+  line-height: 1;
+  transition: transform 180ms ease;
+}
+
+.timeline-card[open] .timeline-expand-label {
+  display: none;
+}
+
+.timeline-card[open] .timeline-collapse-label {
+  display: inline;
+}
+
+.timeline-card[open] .timeline-chevron {
+  transform: rotate(180deg);
+}
+
+.timeline-details {
+  padding: 0 24px 24px;
+  border-top: 1px solid var(--sidebar-border);
 }
 
 .timeline-card-header,
@@ -718,7 +779,7 @@ a {
   text-align: right;
 }
 
-.timeline-card > ul {
+.timeline-details > ul {
   display: grid;
   gap: 10px;
   margin-top: 20px;
