@@ -3,6 +3,14 @@ import { Link, NavLink } from 'react-router-dom'
 function Sidebar({ theme, t, onThemeToggle, onLanguageToggle }) {
     return (
         <aside className="sidebar">
+            <div className="sidebar-brand" aria-hidden="true">
+                <span>03</span>
+                <div>
+                    <strong>LANCELOT</strong>
+                    <small>INTERFACE</small>
+                </div>
+            </div>
+
             <div className="sidebar-controls">
                 <button
                     className="theme-toggle"
@@ -33,6 +41,7 @@ function Sidebar({ theme, t, onThemeToggle, onLanguageToggle }) {
                 <Link to="/?section=gallery">{t.gallery}</Link>
                 <Link to="/?section=contact">{t.contact}</Link>
                 <NavLink to="/blog">{t.blog}</NavLink>
+                <NavLink to="/blue-hour">{t.blueHour}</NavLink>
             </nav>
         </aside>
     )

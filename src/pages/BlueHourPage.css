@@ -1,0 +1,328 @@
+.blue-hour-page {
+  --blue: #0868b7;
+  --blue-dark: #062d62;
+  --blue-light: #74d8ff;
+  --white: #f4fbff;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow: hidden;
+  padding: 34px clamp(24px, 5vw, 72px) 38px;
+  background: var(--blue);
+  color: var(--white);
+  isolation: isolate;
+}
+
+.blue-hour-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.34);
+}
+
+.blue-hour-header > p,
+.blue-hour-time span {
+  margin: 0;
+  color: rgba(244, 251, 255, 0.67);
+  font-family: "Courier New", monospace;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.blue-hour-time {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+}
+
+.blue-hour-time strong {
+  font-size: clamp(1.7rem, 3.5vw, 2.8rem);
+  font-weight: 300;
+  letter-spacing: -0.06em;
+}
+
+.blue-hour-main {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(390px, 0.9fr);
+  align-items: center;
+  flex: 1;
+  gap: clamp(40px, 7vw, 110px);
+  padding: clamp(52px, 9vw, 120px) 0;
+}
+
+.blue-hour-heading {
+  position: relative;
+  width: fit-content;
+}
+
+.blue-hour-heading h1 {
+  position: relative;
+  z-index: 1;
+  max-width: 680px;
+  margin: 0;
+  font-size: clamp(5rem, 12vw, 11rem);
+  font-weight: 900;
+  line-height: 0.75;
+  letter-spacing: -0.1em;
+  text-shadow: 0 14px 30px rgba(0, 35, 91, 0.22);
+  transform: skewY(-4deg);
+}
+
+.blue-hour-number {
+  position: absolute;
+  top: -0.5em;
+  left: -0.27em;
+  color: rgba(255, 255, 255, 0.09);
+  font-size: clamp(11rem, 24vw, 22rem);
+  font-weight: 900;
+  line-height: 1;
+}
+
+.blue-hour-heading > p {
+  position: relative;
+  z-index: 1;
+  width: fit-content;
+  margin: 26px 0 0 auto;
+  padding: 7px 22px;
+  background: var(--white);
+  color: var(--blue-dark);
+  font-size: clamp(0.72rem, 1.25vw, 0.95rem);
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transform: rotate(-2deg);
+  clip-path: polygon(3% 0, 100% 9%, 97% 100%, 0 88%);
+}
+
+.blue-hour-selector {
+  position: relative;
+  display: grid;
+  grid-template-columns: 150px minmax(0, 1fr);
+  min-height: 340px;
+  border-top: 1px solid rgba(255, 255, 255, 0.46);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.46);
+}
+
+.blue-hour-selector nav {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+  padding: 28px 0;
+  border-right: 1px solid rgba(255, 255, 255, 0.28);
+}
+
+.blue-hour-selector nav small {
+  margin: 0 18px 18px;
+  color: rgba(244, 251, 255, 0.5);
+  font-family: "Courier New", monospace;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.blue-hour-selector button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 116%;
+  padding: 16px 18px;
+  border: 0;
+  background: transparent;
+  color: rgba(244, 251, 255, 0.58);
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 800;
+  text-align: left;
+  text-transform: uppercase;
+  transition: color 160ms ease, background-color 160ms ease, transform 160ms ease;
+  cursor: pointer;
+}
+
+.blue-hour-selector button span {
+  color: var(--blue-light);
+  font-family: "Courier New", monospace;
+  font-size: 0.66rem;
+}
+
+.blue-hour-selector button:hover,
+.blue-hour-selector button.is-active {
+  z-index: 1;
+  background: var(--white);
+  color: var(--blue-dark);
+  transform: translateX(7px) skewX(-7deg);
+  clip-path: polygon(0 7%, 95% 0, 100% 86%, 5% 100%);
+}
+
+.blue-hour-selector button:focus-visible {
+  outline: 2px solid var(--white);
+  outline-offset: -4px;
+}
+
+.blue-hour-state {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+  padding: 40px clamp(26px, 4vw, 58px);
+  animation: blue-hour-state-in 340ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.blue-hour-state > span {
+  position: absolute;
+  top: 18px;
+  right: 24px;
+  color: rgba(255, 255, 255, 0.12);
+  font-size: 5.5rem;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.blue-hour-state h2 {
+  position: relative;
+  margin: 0;
+  color: #fff;
+  font-size: clamp(3.2rem, 7vw, 7rem);
+  font-weight: 900;
+  line-height: 0.9;
+  letter-spacing: -0.075em;
+}
+
+.blue-hour-state p {
+  position: relative;
+  max-width: 290px;
+  margin: 24px 0 0;
+  color: rgba(244, 251, 255, 0.76);
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+.blue-hour-footer {
+  display: grid;
+  gap: 7px;
+  width: min(56%, 620px);
+  margin-left: auto;
+}
+
+.blue-hour-footer span {
+  display: block;
+  height: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.34);
+  border-radius: 50%;
+  transform: skewX(-18deg);
+}
+
+@keyframes blue-hour-state-in {
+  from {
+    opacity: 0;
+    transform: translateX(24px) skewX(-3deg);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (max-width: 920px) {
+  .blue-hour-main {
+    grid-template-columns: 1fr;
+    align-content: center;
+  }
+
+  .blue-hour-heading h1 {
+    font-size: clamp(5rem, 17vw, 8.5rem);
+  }
+
+  .blue-hour-selector {
+    width: min(680px, 100%);
+    margin-left: auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .blue-hour-page {
+    padding: 24px 16px 34px;
+  }
+
+  .blue-hour-header > p {
+    max-width: 150px;
+  }
+
+  .blue-hour-time span {
+    display: none;
+  }
+
+  .blue-hour-main {
+    gap: 68px;
+    padding: 72px 0 44px;
+  }
+
+  .blue-hour-heading h1 {
+    font-size: clamp(4rem, 20vw, 6rem);
+  }
+
+  .blue-hour-heading > p {
+    max-width: 88%;
+    margin-top: 19px;
+    text-align: center;
+  }
+
+  .blue-hour-selector {
+    grid-template-columns: 1fr;
+  }
+
+  .blue-hour-selector nav {
+    flex-direction: row;
+    justify-content: flex-start;
+    padding: 12px;
+    overflow-x: auto;
+    border-right: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.28);
+    scrollbar-width: none;
+  }
+
+  .blue-hour-selector nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .blue-hour-selector nav small {
+    display: none;
+  }
+
+  .blue-hour-selector button {
+    flex: 0 0 auto;
+    width: auto;
+    padding: 12px 16px;
+  }
+
+  .blue-hour-selector button:hover,
+  .blue-hour-selector button.is-active {
+    transform: skewX(-6deg);
+  }
+
+  .blue-hour-state {
+    min-height: 230px;
+    padding: 34px 24px;
+  }
+
+  .blue-hour-state h2 {
+    font-size: clamp(3.2rem, 17vw, 5rem);
+  }
+
+  .blue-hour-footer {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .blue-hour-state {
+    animation: none;
+  }
+}

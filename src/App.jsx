@@ -6,6 +6,7 @@ import WelcomeScreen from './components/WelcomeScreen'
 import { portfolioContent } from './data/portfolioData'
 import { translations } from './data/translations'
 import HomePage from './pages/HomePage'
+import BlueHourPage from './pages/BlueHourPage'
 import Blog from './Blog'
 import './App.css'
 
@@ -43,6 +44,7 @@ function App() {
                     <Route path="/" element={<HomePage language={language} t={t} content={portfolioContent} />} />
                     <Route path="/blog" element={<Blog language={language} />} />
                     <Route path="/blog/:slug" element={<Blog language={language} />} />
+                    <Route path="/blue-hour" element={<BlueHourPage language={language} />} />
                     <Route path="*" element={<HomePage language={language} t={t} content={portfolioContent} />} />
                 </Routes>
             </main>

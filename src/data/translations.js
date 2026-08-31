@@ -8,7 +8,7 @@ export const translations = {
         workTitle: 'Selected Projects', achievementsTitle: 'Competition Highlights', viewSource: 'View source', experienceTitle: 'Professional Experience', educationTitle: 'Education', expandExperience: 'View details', collapseExperience: 'Hide details',
         photos: 'My Photos', contact: 'Contact', phone: 'Phone', australiaPhone: 'Australia', chinaPhone: 'China', githubProfile: 'GitHub',
         closePreview: 'Close image preview', imagePreview: 'Image preview', enlargedPreview: 'Enlarged preview', openImagePreview: 'Open image preview', galleryCarousel: 'Photo carousel', previousPhoto: 'Previous photo', nextPhoto: 'Next photo', portraitAlt: 'Portrait of Lancelot', portraitBackAlt: 'Gallery portrait on the back of the profile image', flipPortrait: 'Flip profile image',
-        home: 'Home', about: 'About', experience: 'Experience', work: 'Work', gallery: 'Gallery', blog: 'Blog',
+        home: 'Home', about: 'About', experience: 'Experience', work: 'Work', gallery: 'Gallery', blog: 'Blog', blueHour: 'Blue Hour',
         darkMode: 'Demon King', lightMode: 'Priest', switchToDark: 'Switch to Demon King theme', switchToLight: 'Switch to Priest theme', switchLanguage: '切换到中文', navigation: 'Main navigation', backToTop: 'Back to top',
     },
     zh: {
@@ -20,7 +20,7 @@ export const translations = {
         workTitle: '精选项目', achievementsTitle: '竞赛经历', viewSource: '查看源码', experienceTitle: '工作经历', educationTitle: '教育背景', expandExperience: '展开详情', collapseExperience: '收起详情',
         photos: '我的照片', contact: '邮箱', phone: '电话', australiaPhone: '澳大利亚', chinaPhone: '中国', githubProfile: 'GitHub',
         closePreview: '关闭图片预览', imagePreview: '图片预览', enlargedPreview: '放大的图片', openImagePreview: '打开图片预览', galleryCarousel: '照片轮播', previousPhoto: '上一张照片', nextPhoto: '下一张照片', portraitAlt: 'Lancelot 的个人照片', portraitBackAlt: '头像背面的相册照片', flipPortrait: '翻转头像',
-        home: '主页', about: '关于我', experience: '经历', work: '作品', gallery: '相册', blog: '博客',
+        home: '主页', about: '关于我', experience: '经历', work: '作品', gallery: '相册', blog: '博客', blueHour: '蓝色时刻',
         darkMode: '魔王', lightMode: '祭司', switchToDark: '切换到魔王主题', switchToLight: '切换到祭司主题', switchLanguage: 'Switch to English', navigation: '主导航', backToTop: '回到顶部',
     },
 }
