@@ -18,15 +18,16 @@ html {
   --profile-word: #e5e7eb;
   --welcome-progress: #22c55e;
   --welcome-name: #16a34a;
-  --p3-sidebar-bg: #f8fff9;
+  --p3-sidebar-bg: #ffffff;
   --p3-sidebar-text: #123f2a;
   --p3-sidebar-muted: rgba(18, 63, 42, 0.62);
   --p3-sidebar-faint: rgba(22, 163, 74, 0.08);
-  --p3-sidebar-border: rgba(22, 163, 74, 0.3);
+  --p3-sidebar-border: rgba(22, 163, 74, 0.13);
   --p3-sidebar-accent: #16a34a;
   --p3-sidebar-active-bg: #16a34a;
   --p3-sidebar-active-text: #ffffff;
-  --p3-sidebar-shadow: rgba(21, 128, 61, 0.12);
+  --p3-sidebar-overflow-text: #15803d;
+  --p3-sidebar-shadow: rgba(21, 128, 61, 0.045);
   color-scheme: light;
 }
 
@@ -49,15 +50,16 @@ html[data-theme='dark'] {
   --profile-word: #262626;
   --welcome-progress: #3b82f6;
   --welcome-name: #38bdf8;
-  --p3-sidebar-bg: #03070d;
+  --p3-sidebar-bg: #000000;
   --p3-sidebar-text: #eaf6ff;
   --p3-sidebar-muted: rgba(218, 239, 255, 0.64);
   --p3-sidebar-faint: rgba(30, 136, 229, 0.09);
-  --p3-sidebar-border: rgba(38, 148, 255, 0.38);
+  --p3-sidebar-border: rgba(38, 148, 255, 0.14);
   --p3-sidebar-accent: #2794ff;
   --p3-sidebar-active-bg: #0878df;
   --p3-sidebar-active-text: #ffffff;
-  --p3-sidebar-shadow: rgba(0, 95, 204, 0.22);
+  --p3-sidebar-overflow-text: #2794ff;
+  --p3-sidebar-shadow: rgba(0, 95, 204, 0.08);
   color-scheme: dark;
 }
 
@@ -261,12 +263,12 @@ a {
   height: 100dvh;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  overflow: visible;
   padding: 24px 16px 28px;
   border-right: 1px solid var(--p3-sidebar-border);
   background: var(--p3-sidebar-bg);
   color: var(--p3-sidebar-text);
-  box-shadow: 12px 0 34px var(--p3-sidebar-shadow);
+  box-shadow: 8px 0 24px var(--p3-sidebar-shadow);
   transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease;
 }
 
@@ -376,11 +378,13 @@ a {
   gap: 11px;
   width: 108%;
   text-decoration: none;
-  padding: 11px 14px;
+  padding: 8px 14px;
   border-radius: 0;
   color: var(--p3-sidebar-muted);
-  font-size: 0.86rem;
+  font-size: 2.18rem;
   font-weight: 800;
+  line-height: 1;
+  white-space: nowrap;
   transform-origin: left center;
   transition: background-color 0.18s ease, color 0.18s ease, font-size 0.18s ease,
     letter-spacing 0.18s ease, transform 0.18s ease;
@@ -388,6 +392,8 @@ a {
 }
 
 .side-nav a::before {
+  position: relative;
+  z-index: 1;
   color: var(--p3-sidebar-accent);
   content: "0" counter(sidebar-item);
   font-family: "Courier New", monospace;
@@ -395,19 +401,53 @@ a {
   font-weight: 700;
 }
 
+.side-nav a::after {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  width: 196px;
+  background: transparent;
+  content: "";
+  clip-path: polygon(0 7%, 68% 0, 73% 84%, 5% 100%);
+  transition: background-color 0.18s ease, transform 0.18s ease;
+}
+
 .side-nav a:hover,
 .side-nav a:focus-visible,
 .side-nav a.active {
   z-index: 1;
-  width: 116%;
-  padding-block: 14px;
-  background: var(--p3-sidebar-active-bg);
-  color: var(--p3-sidebar-active-text);
-  font-size: 1.12rem;
+  width: max-content;
+  min-width: 116%;
+  padding-block: 11px;
+  background: transparent;
+  color: var(--p3-sidebar-overflow-text);
+  font-size: 3rem;
   font-weight: 900;
   letter-spacing: 0.035em;
   transform: translateX(3px) skewX(-7deg);
-  clip-path: polygon(0 7%, 95% 0, 100% 84%, 5% 100%);
+}
+
+.side-nav a:hover .nav-label::after,
+.side-nav a:focus-visible .nav-label::after,
+.side-nav a.active .nav-label::after {
+  position: absolute;
+  top: 50%;
+  left: 39px;
+  z-index: 2;
+  width: 94px;
+  overflow: hidden;
+  color: var(--p3-sidebar-active-text);
+  content: attr(data-text);
+  transform: translateY(-50%);
+  white-space: nowrap;
+}
+
+.side-nav a:hover::after,
+.side-nav a:focus-visible::after,
+.side-nav a.active::after {
+  background: var(--p3-sidebar-active-bg);
 }
 
 .side-nav a:hover::before,
@@ -415,6 +455,7 @@ a {
 .side-nav a.active::before {
   color: var(--p3-sidebar-active-text);
   font-size: 0.7rem;
+  -webkit-text-fill-color: var(--p3-sidebar-active-text);
 }
 
 .theme-toggle:hover,
@@ -467,14 +508,14 @@ a {
 
   .side-nav a {
     padding-block: 6px;
-    font-size: 0.78rem;
+    font-size: 1.7rem;
   }
 
   .side-nav a:hover,
   .side-nav a:focus-visible,
   .side-nav a.active {
     padding-block: 8px;
-    font-size: 0.98rem;
+    font-size: 2.2rem;
   }
 }
 
@@ -514,14 +555,14 @@ a {
 
   .side-nav a {
     padding-block: 3px;
-    font-size: 0.68rem;
+    font-size: 1.28rem;
   }
 
   .side-nav a:hover,
   .side-nav a:focus-visible,
   .side-nav a.active {
     padding-block: 5px;
-    font-size: 0.84rem;
+    font-size: 1.62rem;
   }
 }
 
@@ -1696,7 +1737,7 @@ html[data-theme='dark'] .editor-actions .primary-button {
     gap: 1px;
     padding: 8px 3px;
     text-align: center;
-    font-size: 0.72rem;
+    font-size: 1.42rem;
   }
 
   .side-nav a::before {
@@ -1706,15 +1747,28 @@ html[data-theme='dark'] .editor-actions .primary-button {
   .side-nav a:hover,
   .side-nav a:focus-visible,
   .side-nav a.active {
-    width: 116%;
+    width: max-content;
+    min-width: 116%;
     padding-block: 11px;
-    font-size: 0.9rem;
+    font-size: 1.78rem;
   }
 
   .side-nav a:hover::before,
   .side-nav a:focus-visible::before,
   .side-nav a.active::before {
     font-size: 0.58rem;
+  }
+
+  .side-nav a:hover .nav-label,
+  .side-nav a:focus-visible .nav-label,
+  .side-nav a.active .nav-label {
+    color: var(--p3-sidebar-active-text);
+  }
+
+  .side-nav a:hover .nav-label::after,
+  .side-nav a:focus-visible .nav-label::after,
+  .side-nav a.active .nav-label::after {
+    display: none;
   }
 
   .blog-page {
@@ -1829,13 +1883,13 @@ html[data-theme='dark'] .editor-actions .primary-button {
   }
 
   .side-nav a {
-    font-size: 0.64rem;
+    font-size: 1.12rem;
   }
 
   .side-nav a:hover,
   .side-nav a:focus-visible,
   .side-nav a.active {
-    font-size: 0.78rem;
+    font-size: 1.38rem;
   }
 
   .profile-word {
@@ -1885,14 +1939,14 @@ html[data-theme='dark'] .editor-actions .primary-button {
 
   .side-nav a {
     padding-block: 4px;
-    font-size: 0.64rem;
+    font-size: 1.14rem;
   }
 
   .side-nav a:hover,
   .side-nav a:focus-visible,
   .side-nav a.active {
     padding-block: 6px;
-    font-size: 0.8rem;
+    font-size: 1.42rem;
   }
 }
 

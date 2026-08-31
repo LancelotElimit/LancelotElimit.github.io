@@ -34,14 +34,14 @@ function Sidebar({ theme, t, onThemeToggle, onLanguageToggle }) {
             </div>
 
             <nav className="side-nav" aria-label={t.navigation}>
-                <NavLink to="/" end>{t.home}</NavLink>
-                <Link to="/?section=about">{t.about}</Link>
-                <Link to="/?section=experience">{t.experience}</Link>
-                <Link to="/?section=work">{t.work}</Link>
-                <Link to="/?section=gallery">{t.gallery}</Link>
-                <Link to="/?section=contact">{t.contact}</Link>
-                <NavLink to="/blog">{t.blog}</NavLink>
-                <NavLink to="/blue-hour">{t.blueHour}</NavLink>
+                <NavLink to="/" end><span className="nav-label" data-text={t.home}>{t.home}</span></NavLink>
+                <Link to="/?section=about"><span className="nav-label" data-text={t.about}>{t.about}</span></Link>
+                <Link to="/?section=experience"><span className="nav-label" data-text={t.experience}>{t.experience}</span></Link>
+                <Link to="/?section=work"><span className="nav-label" data-text={t.work}>{t.work}</span></Link>
+                <Link to="/?section=gallery"><span className="nav-label" data-text={t.gallery}>{t.gallery}</span></Link>
+                <Link to="/?section=contact"><span className="nav-label" data-text={t.contact}>{t.contact}</span></Link>
+                <NavLink to="/blog"><span className="nav-label" data-text={t.blog}>{t.blog}</span></NavLink>
+                <NavLink to="/blue-hour"><span className="nav-label" data-text={t.blueHour}>{t.blueHour}</span></NavLink>
             </nav>
         </aside>
     )
