@@ -1,7 +1,7 @@
 ---
 title: AIFE 实习开发记录｜Platform Portal 企业管理平台
 date: 2026-08-19
-summary: 记录我在 AIFE 参与 Platform Portal 前端开发期间，对组织架构、预览路由、复制操作、异步状态与缓存策略的实践和思考。
+summary: 持续记录我在 AIFE 参与 Platform Portal 前端开发期间，对组织架构、预览路由、Minimap、画布交互、异步状态与性能优化的实践和思考。
 ---
 
 ## 实习信息
@@ -10,7 +10,7 @@ summary: 记录我在 AIFE 参与 Platform Portal 前端开发期间，对组织
 - **职位：** 前端开发实习生
 - **时间：** 2026 年 8 月 1 日至 9 月 30 日
 - **项目：** Platform Portal 企业内部管理平台
-- **技术栈：** Vue 3、TypeScript、Vue Router、Pinia、Vuetify、Vite、RESTful API
+- **技术栈：** Vue 3、TypeScript、Vuetify、D3.js、Vue Router、Pinia、REST API、Vite
 
 这篇文章用于持续记录我在本次实习中的开发工作、问题分析和阶段性收获。随着后续任务推进，内容也会继续更新。
 
@@ -84,6 +84,36 @@ Preview 页面可能来自列表页，也可能来自详情页。为了让返回
 - **Structure Detail：** 将相关缓存标记为失效，确保后续访问时重新获取最新数据。
 
 这让我意识到，缓存策略不能只考虑“是否重新请求”，还需要结合当前页面、用户下一步行为和数据一致性要求进行设计。
+
+## Org Chart 缩放快捷键
+
+在原有缩放交互基础上，我为 Org Chart 增加了 **Alt/Option + 鼠标滚轮**快捷键，并补充了对应的中英文提示文案。
+
+实现时需要兼顾 Windows 与 macOS 的按键差异，同时确保新增快捷键不会破坏既有的画布滚动、节点操作和浏览器交互。随后我继续调整了缩放上下限、Fit Screen 行为和画布拖动边界，使大型组织架构图在不同缩放状态下更容易定位和浏览。
+
+## Org Chart Minimap
+
+为了帮助用户理解大型组织架构图中的当前位置，我设计并实现了独立的 **Minimap** 组件。Minimap 会以缩略形式展示完整组织结构，并通过视口框标识主 Org Chart 当前可见的区域。
+
+目前支持的交互包括：
+
+- 节点展开、收起或状态变化后自动更新缩略图；
+- 根据主画布的移动和缩放同步更新当前视口范围；
+- 拖动 Minimap 中的视口框，同步平移主 Org Chart；
+- 保持当前缩放比例及原有画布交互逻辑不变；
+- 配合横向和纵向布局切换重新计算内容范围。
+
+## Minimap 更新与性能控制
+
+由于 Org Chart 的节点结构、容器尺寸和变换状态都可能发生变化，如果每次 DOM 变化都立即完整重绘 Minimap，会产生大量重复计算。
+
+我将 Minimap 封装为职责独立的组件，并结合以下浏览器能力控制更新时机：
+
+- `MutationObserver`：监听组织架构节点及相关 DOM 状态变化；
+- `ResizeObserver`：响应主画布和容器尺寸变化；
+- `requestAnimationFrame`：将同一帧内的多次更新合并到浏览器绘制周期中。
+
+这种方式让 Minimap 能够及时反映主视图变化，同时减少连续操作期间的重复渲染和性能开销。开发过程中我也调整了页面布局、按钮位置、响应式尺寸和多语言显示，并完成 TypeScript 组件编译与基础代码检查。
 
 ## Code Review 与回归检查
 
